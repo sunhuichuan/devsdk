@@ -1,0 +1,70 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="DroidTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/appBaseRedColor</item>
+        <item name="colorPrimaryDark">@color/appBaseRedColor</item>
+        <item name="colorAccent">@color/blue_color_2c63ef</item>
+    </style>
+
+    <style name="DroidTheme.White" parent="DroidTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/gray_color_f7f7f7</item>
+        <item name="colorPrimaryDark">@color/gray_color_ababab</item>
+        <item name="colorAccent">@color/appBaseRedColor</item>
+    </style>
+
+    <!-- 透明样式的Activity-->
+    <style name="DroidTheme.Translucent" parent="DroidTheme.White">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/TRANSPARENT</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- Note that we use the base animation style here (that is no
+             animations) because we really have no idea how this kind of
+             activity will be used. -->
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+
+    <!-- 分割线的style-->
+    <style name="divider_line_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/gray_color_bdbdbd</item>
+    </style>
+    <!-- 竖分割线的style-->
+    <style name="divider_line_vertical_style">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/gray_color_bdbdbd</item>
+    </style>
+
+    <!-- textView的通用样式-->
+    <style name="text_view_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textColor">@color/gray_color_545454</item>
+        <!--<item name="android:background">@drawable/text_view_bg</item>-->
+    </style>
+
+    <!-- textView撑满parent的通用样式-->
+    <style name="text_view_match_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/common_text_color</item>
+        <item name="android:layout_weight">1</item>
+        <!--<item name="android:background">@drawable/text_view_bg</item>-->
+    </style>
+
+
+</resources>

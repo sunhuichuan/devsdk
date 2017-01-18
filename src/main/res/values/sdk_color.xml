@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="WHITE">#ffffff</color>
+    <color name="BLACK">#000000</color>
+    <color name="TRANSPARENT">#00000000</color>
+    <!-- 白色条目被按下颜色-->
+    <color name="white_pressed">@color/gray_color_f6f5f4</color>
+    <color name="gray_color_f6f5f4">#f6f5f4</color>
+    <color name="gray_color_acacac">#acacac</color>
+    <color name="gray_color_ebebeb">#ebebeb</color>
+    <color name="gray_color_545454">#545454</color>
+    <color name="gray_color_bdbdbd">#bdbdbd</color>
+    <color name="gray_color_121212">#121212</color>
+    <color name="gray_color_dbdbdb">#dbdbdb</color>
+    <color name="gray_color_a0a0a0">#a0a0a0</color>
+    <!--灰色 cdcdcd-->
+    <color name="gray_color_cdcdcd">#cdcdcd</color>
+    <!--30% 黑-->
+    <color name="black_color_30">#4d000000</color>
+
+    <color name="text_color_333333">#333333</color>
+    <color name="text_color_aaaaaa">#aaaaaa</color>
+    <color name="text_color_white">@color/WHITE</color>
+
+
+
+
+
+
+    <!-- 系统自动生成的颜色先隐去-->
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+    <color name="appBaseRedColor">#f66059</color>
+    <color name="appBaseRedDarkColor">#972f2f</color>
+    <color name="blue_color_2c63ef">#2c63ef</color>
+
+    <color name="gray_color_f7f7f7">#f7f7f7</color>
+    <color name="gray_color_ababab">#ababab</color>
+
+
+    <!-- 所有页面的背景色-->
+    <color name="page_background_color">@color/gray_color_f6f5f4</color>
+
+
+</resources>
