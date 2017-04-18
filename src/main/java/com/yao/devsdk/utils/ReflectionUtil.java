@@ -2,7 +2,7 @@ package com.yao.devsdk.utils;
 
 import android.support.annotation.Nullable;
 
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
@@ -33,7 +33,7 @@ public class ReflectionUtil {
             } catch (NoSuchMethodException e) {
                 //这里必须捕获异常，不能抛出去。
                 //否则就不会执行clazz = clazz.getSuperclass(),不会进入到父类中
-                LogUtil.i(TAG,clazz.getSimpleName()+" 中没有找到方法 "+methodName);
+                LoggerUtil.i(TAG,clazz.getSimpleName()+" 中没有找到方法 "+methodName);
             }
         }
 
@@ -67,7 +67,7 @@ public class ReflectionUtil {
                 return obj;
             }
         } catch (Exception e) {
-            LogUtil.e(TAG, "反射异常", e);
+            LoggerUtil.e(TAG, "反射异常", e);
         }
 
         return null;
@@ -89,7 +89,7 @@ public class ReflectionUtil {
             return returnValue;
 
         } catch (Exception e) {
-            LogUtil.e(TAG, "反射异常", e);
+            LoggerUtil.e(TAG, "反射异常", e);
         }
 
         return null;
@@ -112,7 +112,7 @@ public class ReflectionUtil {
             } catch (NoSuchFieldException e) {
                 //这里必须捕获异常，不能抛出去。
                 //否则就不会执行clazz = clazz.getSuperclass(),不会进入到父类中
-                LogUtil.i(TAG,clazz.getSimpleName()+" 中没有找到字段 "+fieldName);
+                LoggerUtil.i(TAG,clazz.getSimpleName()+" 中没有找到字段 "+fieldName);
             }
         }
 
@@ -140,7 +140,7 @@ public class ReflectionUtil {
                 field.setAccessible(oldAccessible);
             }
         } catch (Exception e) {
-            LogUtil.e(TAG, "反射异常", e);
+            LoggerUtil.e(TAG, "反射异常", e);
         }
 
     }
@@ -170,7 +170,7 @@ public class ReflectionUtil {
             }
 
         } catch (Exception e) {
-            LogUtil.e(TAG, "反射异常", e);
+            LoggerUtil.e(TAG, "反射异常", e);
         }
 
         return null;
@@ -197,7 +197,7 @@ public class ReflectionUtil {
                 return obj;
             }
         } catch (Exception e) {
-            LogUtil.e(TAG, "反射异常", e);
+            LoggerUtil.e(TAG, "反射异常", e);
         }
 
         return null;
@@ -223,7 +223,7 @@ public class ReflectionUtil {
             return invokeStaticMethod(clazz, methodName, argsClass, args);
 
         } catch (Exception e) {
-            LogUtil.e(TAG, "反射异常", e);
+            LoggerUtil.e(TAG, "反射异常", e);
         }
         return null;
     }
@@ -250,7 +250,7 @@ public class ReflectionUtil {
                 return obj;
             }
         } catch (Exception e) {
-            LogUtil.e(TAG, "反射异常", e);
+            LoggerUtil.e(TAG, "反射异常", e);
         }
         return null;
     }
@@ -272,7 +272,7 @@ public class ReflectionUtil {
             return newInstance(clazz, argsClass, args);
 
         } catch (Exception e) {
-            LogUtil.e(TAG, "反射异常", e);
+            LoggerUtil.e(TAG, "反射异常", e);
         }
 
         return null;
@@ -296,7 +296,7 @@ public class ReflectionUtil {
             return obj;
 
         } catch (Exception e) {
-            LogUtil.e(TAG, "反射异常", e);
+            LoggerUtil.e(TAG, "反射异常", e);
         }
 
         return null;

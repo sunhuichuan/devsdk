@@ -17,18 +17,10 @@ package retrofit2.converter.gson;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.yao.devsdk.constants.SdkConst;
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.Writer;
 
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
@@ -56,7 +48,7 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
             }
             String response = sb.toString();
 
-            LogUtil.i(TAG, "获取到的服务器返回结果：" + response);
+            LoggerUtil.i(TAG, "获取到的服务器返回结果：" + response);
 
             return adapter.fromJson(response);
 
@@ -65,7 +57,7 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
 //        return adapter.read(jsonReader);
 
         } catch (Exception e) {
-            LogUtil.e(TAG,"解析异常",e);
+            LoggerUtil.e(TAG,"解析异常",e);
             return null;
         } finally {
             value.close();

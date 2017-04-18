@@ -18,7 +18,7 @@ import com.yao.devsdk.constants.FolderPath;
 import com.yao.devsdk.imageloader.ImageLoaderManager;
 import com.yao.devsdk.log.CrashLogManager;
 import com.yao.devsdk.log.CustomCrashHandler;
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 import com.yao.devsdk.constants.SdkConst;
 import com.yao.devsdk.prefs.PrefsSDKUser;
 import com.yao.devsdk.utils.DisplayUtil;
@@ -132,7 +132,7 @@ public class SdkConfig {
             versionName = pi.versionName;
             versionCode = pi.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
-            LogUtil.e(TAG, "获取版本号异常", e);
+            LoggerUtil.e(TAG, "获取版本号异常", e);
         }
     }
 
@@ -174,7 +174,7 @@ public class SdkConfig {
 //            mac = mac.replaceAll(":", "").toUpperCase();
 //        }
     } catch (Exception e) {
-        LogUtil.e(TAG,"获取PhoneState相关权限异常",e);
+        LoggerUtil.e(TAG,"获取PhoneState相关权限异常",e);
     }
     }
     /**
@@ -185,7 +185,7 @@ public class SdkConfig {
             ActivityManager activityManager= (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
             heapSize=activityManager.getMemoryClass();
         } catch (Exception e) {
-            LogUtil.e(TAG, "获取heapSize异常", e);
+            LoggerUtil.e(TAG, "获取heapSize异常", e);
         }
     }
     /**
@@ -209,9 +209,9 @@ public class SdkConfig {
         try {
             ipAddress = SdkUtil.getLocalIpAddress(context);
         } catch (Exception e) {
-            LogUtil.e(TAG, "获取ip地址异常", e);
+            LoggerUtil.e(TAG, "获取ip地址异常", e);
         }
-        LogUtil.i(TAG,"ip地址是："+ipAddress);
+        LoggerUtil.i(TAG,"ip地址是："+ipAddress);
     }
 
 
@@ -230,7 +230,7 @@ public class SdkConfig {
                 userAgent = "error";
             }
         } catch (Exception e) {
-            LogUtil.e(TAG, "获取userAgent异常", e);
+            LoggerUtil.e(TAG, "获取userAgent异常", e);
         }
         return userAgent;
     }
@@ -248,9 +248,9 @@ public class SdkConfig {
             IMEI = tm.getDeviceId();
             networkOperator = tm.getNetworkOperatorName();
         } catch (SecurityException e) {
-            LogUtil.i(TAG,"获取PhoneState相关权限异常",e);
+            LoggerUtil.i(TAG,"获取PhoneState相关权限异常",e);
         } catch (Exception e) {
-            LogUtil.e(TAG,"获取IMEI异常",e);
+            LoggerUtil.e(TAG,"获取IMEI异常",e);
         }
     }
 

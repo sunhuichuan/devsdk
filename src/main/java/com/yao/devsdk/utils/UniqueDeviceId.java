@@ -1,6 +1,5 @@
 package com.yao.devsdk.utils;
 
-import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -8,7 +7,7 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -49,12 +48,12 @@ public class UniqueDeviceId {
             // 6 SUM THE IDs
 //            String devIdLong = imei + devIDShort + androidId + wlanMac + btMac;
             String devIdLong = devIDShort.concat(androidId).concat(wlanMac);
-            LogUtil.i(TAG, "拼接的id为：" + devIdLong);
+            LoggerUtil.i(TAG, "拼接的id为：" + devIdLong);
             String idString  = md5IdString(devIdLong)+imei;
-            LogUtil.i(TAG, "最终的id为：" + idString+",前30位为自己生成的设备id");
+            LoggerUtil.i(TAG, "最终的id为：" + idString+",前30位为自己生成的设备id");
             return idString;
         } catch (Throwable t) {
-            LogUtil.e(TAG, "最终异常", t);
+            LoggerUtil.e(TAG, "最终异常", t);
         }
         return "DeviceId0";
     }
@@ -76,9 +75,9 @@ public class UniqueDeviceId {
                 return imei.trim();
             }
         } catch (SecurityException e) {
-            LogUtil.i(TAG, "没有权限异常", e);
+            LoggerUtil.i(TAG, "没有权限异常", e);
         } catch (Exception e) {
-            LogUtil.e(TAG, "获取IMEI异常", e);
+            LoggerUtil.e(TAG, "获取IMEI异常", e);
         }
         return null;
     }
@@ -117,7 +116,7 @@ public class UniqueDeviceId {
                 + Build.TAGS.length() % 10 + Build.TYPE.length() % 10
                 + Build.USER.length() % 10; // 13 digits
         // #debug
-        LogUtil.d(TAG, "devIDShort: " + devIDShort);
+        LoggerUtil.d(TAG, "devIDShort: " + devIDShort);
 
         return devIDShort;
     }
@@ -136,7 +135,7 @@ public class UniqueDeviceId {
             String wlanMac = wm.getConnectionInfo().getMacAddress();
             return wlanMac;
         } catch (Exception e) {
-            LogUtil.e(TAG, "获取wlan异常", e);
+            LoggerUtil.e(TAG, "获取wlan异常", e);
         }
         return null;
     }

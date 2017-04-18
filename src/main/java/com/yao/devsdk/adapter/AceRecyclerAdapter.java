@@ -4,10 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.BaseAdapter;
 
 import com.yao.devsdk.SdkConfig;
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,13 +100,13 @@ public abstract class AceRecyclerAdapter<T,VH extends RecyclerView.ViewHolder> e
 
     @Override
     public final void onBindViewHolder(final VH viewHolder, final int position) {
-        LogUtil.i(TAG, "Element " + position + " set.");
+        LoggerUtil.i(TAG, "Element " + position + " set.");
         final T obj = mList.get(position);
         if (viewHolder.itemView!=null){
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LogUtil.i(TAG, "click:" + (obj == null ? "nuuullll" : obj.toString()));
+                    LoggerUtil.i(TAG, "click:" + (obj == null ? "nuuullll" : obj.toString()));
                     int n = viewHolder.getLayoutPosition();
                     if (mOnItemClickListener!=null && obj!=null){
                         mOnItemClickListener.onItemClick(v, n, obj);

@@ -1,7 +1,7 @@
 package com.yao.devsdk.net;
 
 import com.yao.devsdk.SdkConfig;
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 import com.yao.devsdk.net.event.NeedLoginEvent;
 import com.yao.devsdk.net.exception.ApiException;
 import com.yao.devsdk.net.response.HttpResult;
@@ -94,7 +94,7 @@ public class HttpClient<T> {
 
         @Override
         public Observable<T> call(Observable<T> observable) {
-            LogUtil.i(TAG,"当前设定的线程是："+Thread.currentThread().getId());
+            LoggerUtil.i(TAG,"当前设定的线程是："+Thread.currentThread().getId());
             return observable
                     .subscribeOn(Schedulers.io())
 //                    .unsubscribeOn(Schedulers.io())

@@ -114,7 +114,7 @@ public class CrashLogManager {
                     String fileContent = FileUtil.readFileContent(logItem);
                     if (!TextUtils.isEmpty(fileContent)){
                         //不为空，则上传到服务器
-                        LogUtil.i(TAG, "要上传到服务器的为log为：" + fileContent);
+                        LoggerUtil.i(TAG, "要上传到服务器的为log为：" + fileContent);
                         logList.add(fileContent);
 
 //                        final FeedBackRequest request = new FeedBackRequest(FeedBackRequest.TYPE_CRASH_LOG,fileContent,new Response.Listener<Result>() {
@@ -139,7 +139,7 @@ public class CrashLogManager {
             }
 
         } else {
-            LogUtil.i(TAG, "文件夹不存在：" + folderPath);
+            LoggerUtil.i(TAG, "文件夹不存在：" + folderPath);
         }
         return logList;
 
@@ -157,7 +157,7 @@ public class CrashLogManager {
      * @return
      */
     public String saveInfoToSD(Context context, Throwable ex) {
-        LogUtil.e(TAG,"saveInfoToSD,保存异常信息");
+        LoggerUtil.e(TAG,"saveInfoToSD,保存异常信息");
         ex.printStackTrace();
         String fileName = null;
         StringBuffer sb = new StringBuffer();
@@ -229,7 +229,7 @@ public class CrashLogManager {
             map.put("SDK_INT", "" + Build.VERSION.SDK_INT);
             map.put("PRODUCT", "" + Build.PRODUCT);
         } catch (PackageManager.NameNotFoundException e) {
-            LogUtil.w(TAG, "获取设备信息异常", e);
+            LoggerUtil.w(TAG, "获取设备信息异常", e);
         }
 
         return map;

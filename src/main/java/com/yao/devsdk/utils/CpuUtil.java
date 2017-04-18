@@ -3,7 +3,7 @@ package com.yao.devsdk.utils;
 import android.os.Build;
 import android.text.TextUtils;
 
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -91,7 +91,7 @@ public class CpuUtil {
                 String nameCpuFamily = "cpu family";
                 while (true) {
                     String line = br.readLine();
-                    LogUtil.i(TAG, "cpuInfo:" + line);
+                    LoggerUtil.i(TAG, "cpuInfo:" + line);
                     String[] pair = null;
                     if (line == null) {
                         break;
@@ -190,7 +190,7 @@ public class CpuUtil {
         } else {
             cpu = cpu.toLowerCase();
         }
-        LogUtil.d(TAG, "cpu:" + cpu);
+        LoggerUtil.d(TAG, "cpu:" + cpu);
         return cpu;
     }
 

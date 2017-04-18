@@ -41,7 +41,7 @@ import android.widget.TextView;
 
 import com.yao.devsdk.SdkConfig;
 import com.yao.devsdk.constants.SdkConst;
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 import com.yao.devsdk.model.SchemeMap;
 import com.yao.devsdk.widget.HandlerToast;
 
@@ -158,7 +158,7 @@ public class SdkUtil {
                 tempFileName += suffix;
             }
         } catch (Exception e) {
-            LogUtil.e(TAG, e.getMessage(), e.getCause());
+            LoggerUtil.e(TAG, e.getMessage(), e.getCause());
         }
         return tempFileName;
     }
@@ -176,7 +176,7 @@ public class SdkUtil {
             int ipAdd = wi.getIpAddress();
             // 把整型地址转换成“*.*.*.*”地址
             String ip = intToIp(ipAdd);
-            LogUtil.d("ipwifi", ip);
+            LoggerUtil.d("ipwifi", ip);
             return ip;
 
         } else {
@@ -232,7 +232,7 @@ public class SdkUtil {
                             PackageManager.GET_META_DATA);
             ret = appinfo.metaData.getString(key);
         } catch (Exception e) {
-            LogUtil.e(TAG, "获取meta异常", e);
+            LoggerUtil.e(TAG, "获取meta异常", e);
         }
         return ret;
     }
@@ -256,7 +256,7 @@ public class SdkUtil {
 
     public static boolean isServiceWorkedByClassName(Context context, String classname) {
         // #debug
-        LogUtil.d(TAG, "isServiceWorkedByClassName(): start the "
+        LoggerUtil.d(TAG, "isServiceWorkedByClassName(): start the "
                 + classname);
         ActivityManager myManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         ArrayList<RunningServiceInfo> runningService = (ArrayList<RunningServiceInfo>) myManager
@@ -264,7 +264,7 @@ public class SdkUtil {
         for (int i = 0; i < runningService.size(); i++) {
             if (runningService.get(i).service.getClassName().equals(classname)) {
                 // #debug
-                LogUtil.d(TAG, "isServiceWorkedByClassName(): get the "
+                LoggerUtil.d(TAG, "isServiceWorkedByClassName(): get the "
                         + classname);
                 return true;
             }
@@ -273,8 +273,9 @@ public class SdkUtil {
     }
 
 
-    public static void showDebugToast(Context context, String text) {
+    public static void showDebugToast(String text) {
         if (SdkConst.DEBUG) {
+            Context context = SdkConfig.getAppContext();
             HandlerToast.getInstance(context).showToast(text);
         }
     }
@@ -356,7 +357,7 @@ public class SdkUtil {
             }
             return mobile == State.CONNECTED || mobile == State.CONNECTING;
         } catch (Exception e) {
-            LogUtil.e(TAG, "判断网络异常", e);
+            LoggerUtil.e(TAG, "判断网络异常", e);
         }
         return false;
     }
@@ -407,7 +408,7 @@ public class SdkUtil {
                 return false;
             }
         } catch (Exception e) {
-            LogUtil.e(TAG, "判断网络异常", e);
+            LoggerUtil.e(TAG, "判断网络异常", e);
         }
         return false;
     }
@@ -430,7 +431,7 @@ public class SdkUtil {
             }
             return wifi == State.CONNECTED || wifi == State.CONNECTING;
         } catch (Exception e) {
-            LogUtil.e(TAG, "判断网络异常", e);
+            LoggerUtil.e(TAG, "判断网络异常", e);
         }
         return false;
     }
@@ -470,7 +471,7 @@ public class SdkUtil {
 
             }
         } catch (Exception e) {
-            LogUtil.e(TAG, "判断网络异常", e);
+            LoggerUtil.e(TAG, "判断网络异常", e);
         }
         return flag;
     }
@@ -484,10 +485,10 @@ public class SdkUtil {
         try {
             PackageManager pm = context.getPackageManager();
             PackageInfo packageInfo = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            LogUtil.i(TAG, "packageInfo:" + packageInfo);
+            LoggerUtil.i(TAG, "packageInfo:" + packageInfo);
         } catch (Exception e) {
             //Caused by: android.os.TransactionTooLargeException
-            LogUtil.i(TAG, "判断安装异常了", e);
+            LoggerUtil.i(TAG, "判断安装异常了", e);
             return false;
         }
         return true;
@@ -505,20 +506,20 @@ public class SdkUtil {
             PackageInfo packageInfo = manager.getPackageInfo(pkgname, PackageManager.GET_SIGNATURES);
             //通过返回的包信息获得签名数组
             Signature[] signatures = packageInfo.signatures;
-            LogUtil.i(TAG, "签名个数：" + signatures.length);
+            LoggerUtil.i(TAG, "签名个数：" + signatures.length);
             byte[] signatureArray = null;
             //循环遍历签名数组拼接应用签名
             for (Signature signature : signatures) {
                 signatureArray = signature.toByteArray();
-                LogUtil.i(TAG, "签名:" + signatureArray);
-                LogUtil.i(TAG, "MD5签名后:" + MD5.hexdigest(signatureArray));
+                LoggerUtil.i(TAG, "签名:" + signatureArray);
+                LoggerUtil.i(TAG, "MD5签名后:" + MD5.hexdigest(signatureArray));
             }
-            LogUtil.i(TAG, "获取到的签名为：" + signatureArray);
+            LoggerUtil.i(TAG, "获取到的签名为：" + signatureArray);
             String signatureMd5 = MD5.hexdigest(signatureArray);
-            LogUtil.i(TAG, "获取到的签名md5为：" + signatureMd5);
+            LoggerUtil.i(TAG, "获取到的签名md5为：" + signatureMd5);
             return signatureMd5;
         } catch (Exception e) {
-            LogUtil.e(TAG, "获取签名异常", e);
+            LoggerUtil.e(TAG, "获取签名异常", e);
         }
         return "";
     }
@@ -570,7 +571,7 @@ public class SdkUtil {
                     }
                 }
             } catch (Exception e) {
-                LogUtil.e(TAG, e.getMessage(), e.getCause());
+                LoggerUtil.e(TAG, e.getMessage(), e.getCause());
             }
         }
         return deletedFiles;
@@ -704,7 +705,7 @@ public class SdkUtil {
             ss.setSpan(span, 0, LABEL.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
             return ss;
         } catch (Exception e) {
-            LogUtil.e(TAG, "添加图片标签异常", e);
+            LoggerUtil.e(TAG, "添加图片标签异常", e);
         }
         return new SpannableString(text);
     }
@@ -734,7 +735,7 @@ public class SdkUtil {
             ss.setSpan(span, ss.length() - LABEL.length(), ss.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
             return ss;
         } catch (Exception e) {
-            LogUtil.e(TAG, "添加图片标签异常", e);
+            LoggerUtil.e(TAG, "添加图片标签异常", e);
         }
         return new SpannableString(text);
     }
@@ -757,7 +758,7 @@ public class SdkUtil {
             }
             return new SchemeMap(paramsMap);
         } catch (Exception e) {
-            LogUtil.e(TAG, "scheme解析异常", e);
+            LoggerUtil.e(TAG, "scheme解析异常", e);
         }
         return null;
 

@@ -1,8 +1,10 @@
 package com.yao.devsdk.utils;
 
+import android.app.Activity;
 import android.content.Intent;
 
 import com.yao.devsdk.R;
+import com.yao.devsdk.components.model.ActivityIntent;
 import com.yao.devsdk.ui.SDKBaseActivity;
 
 /**
@@ -10,29 +12,50 @@ import com.yao.devsdk.ui.SDKBaseActivity;
  */
 public class ActivityUtil {
 
+    /**
+     * 默认动画开启Activity
+     * @param intent
+     */
+    public static void startActivityWithDefaultAnimation(ActivityIntent intent){
+        startActivityWithDefaultAnimation(intent,-1);
+    }
+
+    /**
+     * 默认动画开启Activity
+     * @param activityIntent
+     */
+    public static void startActivityWithDefaultAnimation(ActivityIntent activityIntent, int requestCode){
+        if (activityIntent!=null){
+            Intent intent = activityIntent.getIntent();
+            Activity activity = activityIntent.getContext();
+            activity.startActivityForResult(intent, requestCode);
+        }
+    }
+
 
     /**
      * 平移动画开启Activity
-     * @param context
      * @param intent
      */
-    public static void startActivityWithTranslationAnimation(SDKBaseActivity context,Intent intent){
-        startActivityWithTranslationAnimation(context,intent,-1);
+    public static void startActivityWithTranslationAnimation(ActivityIntent intent){
+        startActivityWithTranslationAnimation(intent,-1);
     }
     /**
      * 平移动画开启Activity
-     * @param context
-     * @param intent
+     * @param activityIntent
      */
-    public static void startActivityWithTranslationAnimation(SDKBaseActivity context,Intent intent,int requestCode){
-        if (intent!=null && context!=null){
+    public static void startActivityWithTranslationAnimation(ActivityIntent activityIntent, int requestCode){
+        if (activityIntent!=null){
             int inAnim = R.anim.activity_translation_start_in;
             int outAnim = R.anim.activity_translation_start_out;
-            context.startActivityForResult(intent, requestCode);
-            context.overridePendingTransition(inAnim,
+            Intent intent = activityIntent.getIntent();
+            Activity activity = activityIntent.getContext();
+            activity.startActivityForResult(intent, requestCode);
+            activity.overridePendingTransition(inAnim,
                     outAnim);
         }
     }
+
     /**
      * 平移动画关闭Activity
      * @param context
@@ -53,23 +76,22 @@ public class ActivityUtil {
 
     /**
      * 渐入渐出动画开启Activity
-     * @param context
      * @param intent
      */
-    public static void startActivityWithFadeAnimation(SDKBaseActivity context,Intent intent){
-        startActivityWithFadeAnimation(context,intent,-1);
+    public static void startActivityWithFadeAnimation(ActivityIntent intent){
+        startActivityWithFadeAnimation(intent,-1);
     }
     /**
      * 渐入渐出动画开启Activity
-     * @param context
-     * @param intent
      */
-    public static void startActivityWithFadeAnimation(SDKBaseActivity context,Intent intent,int requestCode){
-        if (intent!=null){
+    public static void startActivityWithFadeAnimation(ActivityIntent activityIntent,int requestCode){
+        if (activityIntent!=null){
             int inAnim = R.anim.activity_fade_in;
             int outAnim = R.anim.activity_fade_out;
-            context.startActivityForResult(intent,requestCode);
-            context.overridePendingTransition(inAnim,
+            Intent intent = activityIntent.getIntent();
+            Activity activity = activityIntent.getContext();
+            activity.startActivityForResult(intent,requestCode);
+            activity.overridePendingTransition(inAnim,
                     outAnim);
         }
     }
@@ -90,23 +112,22 @@ public class ActivityUtil {
 
     /**
      * 从下向上动画开启Activity
-     * @param context
      * @param intent
      */
-    public static void startActivityWithUpAnimation(SDKBaseActivity context,Intent intent){
-        startActivityWithUpAnimation(context,intent,-1);
+    public static void startActivityWithUpAnimation(ActivityIntent intent){
+        startActivityWithUpAnimation(intent,-1);
     }
     /**
      * 从下向上动画开启Activity
-     * @param context
-     * @param intent
      */
-    public static void startActivityWithUpAnimation(SDKBaseActivity context,Intent intent,int requestCode){
-        if (intent!=null){
+    public static void startActivityWithUpAnimation(ActivityIntent activityIntent,int requestCode){
+        if (activityIntent!=null){
             int inAnim = R.anim.activity_up_in;
-            context.startActivityForResult(intent,requestCode);
+            Intent intent = activityIntent.getIntent();
+            Activity activity = activityIntent.getContext();
+            activity.startActivityForResult(intent,requestCode);
             //加上fake_anim是为了避免背景变黑色
-            context.overridePendingTransition(inAnim,R.anim.fake_anim);
+            activity.overridePendingTransition(inAnim,R.anim.fake_anim);
         }
     }
     /**

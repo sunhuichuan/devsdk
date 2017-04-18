@@ -4,7 +4,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 
 import java.util.List;
 
@@ -45,10 +45,10 @@ public class ProcessUtils {
         List<ActivityManager.RunningAppProcessInfo> processInfo = am.getRunningAppProcesses();
         String mainProcessName = context.getPackageName();
         int myPid = android.os.Process.myPid();
-        LogUtil.i(TAG, "进程pid:" + myPid);
+        LoggerUtil.i(TAG, "进程pid:" + myPid);
         for (ActivityManager.RunningAppProcessInfo info : processInfo) {
             if (info.pid == myPid){
-                LogUtil.i(TAG, "进程名：" + info.processName);
+                LoggerUtil.i(TAG, "进程名：" + info.processName);
                 if (TextUtils.equals(mainProcessName,info.processName)){
                     return true;
                 }else{

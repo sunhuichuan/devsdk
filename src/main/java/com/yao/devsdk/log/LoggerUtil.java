@@ -6,7 +6,7 @@ import com.yao.devsdk.utils.file.FileUtil;
 /**
  * sdk的log打印
  */
-public class LogUtil {
+public class LoggerUtil {
     private static String TAG = "LogUtil";
 
     static boolean showLog() {
@@ -109,7 +109,7 @@ public class LogUtil {
                     Runtime.getRuntime().totalMemory() + " bytes\n" + "freeMemory = " +
                     Runtime.getRuntime().freeMemory() + " bytes\n" + "maxMemory = " + Runtime.getRuntime().maxMemory() +
                     " bytes\n" + "********************************************";
-            LogUtil.v(TAG, mem);
+            LoggerUtil.v(TAG, mem);
         }
         // #enddebug
     }

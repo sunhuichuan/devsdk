@@ -8,7 +8,7 @@ import com.j256.ormlite.misc.TransactionManager;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.yao.devsdk.log.CustomCrashHandler;
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,14 +65,14 @@ public abstract class ORMLiteOpenHelper extends OrmLiteSqliteOpenHelper {
             addTableClassToList(mTableClassList, mClearCacheTableClassList);
 
         } catch (SQLException e) {
-            LogUtil.e(TAG, "创建UpgradeHelper异常", e);
+            LoggerUtil.e(TAG, "创建UpgradeHelper异常", e);
         }
     }
 
     @Override
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
         try {
-            LogUtil.d(TAG, "onCreate");
+            LoggerUtil.d(TAG, "onCreate");
 
             //创建所有的数据库表
             for (Class clazz : mTableClassList){
@@ -80,7 +80,7 @@ public abstract class ORMLiteOpenHelper extends OrmLiteSqliteOpenHelper {
             }
 
         } catch (Exception e) {
-            LogUtil.e(TAG, "Can't create database", e);
+            LoggerUtil.e(TAG, "Can't create database", e);
 //            throw new RuntimeException(e);
             if (context!=null){
                 CustomCrashHandler.saveExceptionLog(context,"ORMLiteOpenHelper 在onCreate的时候崩溃",e);
@@ -97,7 +97,7 @@ public abstract class ORMLiteOpenHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource,
                           int oldVersion, int newVersion) {
-        LogUtil.d(TAG, "onUpgrade");
+        LoggerUtil.d(TAG, "onUpgrade");
         try {
 
             if (mUpdateHelper !=null){
@@ -105,7 +105,7 @@ public abstract class ORMLiteOpenHelper extends OrmLiteSqliteOpenHelper {
             }
 
         } catch (Exception e) {
-            LogUtil.e(TAG, "Can't drop databases", e);
+            LoggerUtil.e(TAG, "Can't drop databases", e);
             try {
                 //更新异常时，重建所有的表
                 mUpdateHelper.onUpdateDefault(db,connectionSource);
@@ -209,7 +209,7 @@ public abstract class ORMLiteOpenHelper extends OrmLiteSqliteOpenHelper {
             TransactionManager manager = new TransactionManager(getConnectionSource());
             return manager.callInTransaction(callback);
         } catch (SQLException e) {
-            LogUtil.e(TAG, "执行事务异常",e);
+            LoggerUtil.e(TAG, "执行事务异常",e);
 //            throw new RuntimeException(e);
             if (context!=null){
                 CustomCrashHandler.saveExceptionLog(context,"ORMLiteOpenHelper 在callInTransaction的时候崩溃",e);

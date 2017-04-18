@@ -59,7 +59,7 @@ public abstract class SDKBaseActivity extends AppCompatActivity implements SDKBa
     public final void finish() {
         if (SdkConst.DEBUG){
             String message = "不要调Finish,"+this.getClass().getName();
-            SdkUtil.showDebugToast(appContext,message);
+            SdkUtil.showDebugToast(message);
             throw new RuntimeException("不要直接调用BaseActivity的 finish 方法, from-->"+message);
         }
     }

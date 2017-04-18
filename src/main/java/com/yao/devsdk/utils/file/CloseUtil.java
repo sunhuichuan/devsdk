@@ -2,7 +2,7 @@ package com.yao.devsdk.utils.file;
 
 import android.os.ParcelFileDescriptor;
 
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,7 +25,7 @@ public final class CloseUtil {
                 is.close();
             } catch (IOException e) {
                 // #debug
-                LogUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
+                LoggerUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
             }
         }
     }
@@ -36,7 +36,7 @@ public final class CloseUtil {
                 writer.close();
             } catch (IOException e) {
                 // #debug
-                LogUtil.e(TAG_CLOSE, "写文件final异常", e);
+                LoggerUtil.e(TAG_CLOSE, "写文件final异常", e);
             }
         }
 
@@ -48,7 +48,7 @@ public final class CloseUtil {
                 os.close();
             } catch (IOException e) {
                 // #debug
-                LogUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
+                LoggerUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
             }
         }
     }
@@ -59,7 +59,7 @@ public final class CloseUtil {
                 bufferedReader.close();
             } catch (IOException e) {
                 // #debug
-                LogUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
+                LoggerUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
             }
         }
     }
@@ -70,7 +70,7 @@ public final class CloseUtil {
                 pfd.close();
             } catch (IOException e) {
                 // #debug
-                LogUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
+                LoggerUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
             }
         }
     }
@@ -81,7 +81,7 @@ public final class CloseUtil {
                 socket.close();
             } catch (IOException e) {
                 // #debug
-                LogUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
+                LoggerUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
             }
         }
     }
@@ -92,7 +92,7 @@ public final class CloseUtil {
                 datagramSocket.close();
             } catch (Exception e) {
                 // #debug
-                LogUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
+                LoggerUtil.e(TAG_CLOSE, e.getMessage(), e.getCause());
             }
         }
     }

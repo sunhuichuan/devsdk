@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 
 import com.yao.devsdk.constants.SdkConst;
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +57,7 @@ public class PermissionManager {
     public boolean isGrant(Activity activity,String permission) {
         boolean isDeny = ContextCompat.checkSelfPermission(activity, permission) !=
                 PackageManager.PERMISSION_GRANTED;
-        LogUtil.i(TAG,"权限--"+permission+"--是否被拒绝："+isDeny);
+        LoggerUtil.i(TAG,"权限--"+permission+"--是否被拒绝："+isDeny);
         return !isDeny;
     }
 
@@ -68,7 +68,7 @@ public class PermissionManager {
     public void requestStoragePermission(Activity activity,PermissionGrantListener listener){
         permissionListeners.add(listener);
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity,PERMISSION_STORAGE)) {
-            LogUtil.i(TAG,"需要弹出解释的弹框");
+            LoggerUtil.i(TAG,"需要弹出解释的弹框");
 
         }else{
             //其他情况，申请权限

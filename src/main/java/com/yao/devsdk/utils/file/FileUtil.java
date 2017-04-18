@@ -9,7 +9,7 @@ import android.text.TextUtils;
 
 import com.yao.devsdk.SdkConfig;
 import com.yao.devsdk.constants.FolderPath;
-import com.yao.devsdk.log.LogUtil;
+import com.yao.devsdk.log.LoggerUtil;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -45,7 +45,7 @@ public class FileUtil {
                     logDir.mkdir();
                 }
             } catch (Exception e) {
-                LogUtil.w(TAG, "创建文件夹异常", e);
+                LoggerUtil.w(TAG, "创建文件夹异常", e);
             }
         }
     }
@@ -55,7 +55,7 @@ public class FileUtil {
 
     public static String getRootFolderPath() {
         String appRootPath = SDCARD_ROOT + FolderPath.PATH_APP_ROOT;
-        LogUtil.i(TAG,"app根目录："+appRootPath);
+        LoggerUtil.i(TAG,"app根目录："+appRootPath);
         return appRootPath;
     }
 
@@ -107,7 +107,7 @@ public class FileUtil {
             // AssetFileDescriptor descriptor = assetManager.openFd(fileName);
         } catch (Exception e) {
             // #debug
-            LogUtil.e(TAG, "getAssertsPath(): e=", e);
+            LoggerUtil.e(TAG, "getAssertsPath(): e=", e);
         } finally {
             CloseUtil.close(is);
         }
@@ -125,7 +125,7 @@ public class FileUtil {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                LogUtil.e(TAG, e.getMessage(), e.getCause());
+                LoggerUtil.e(TAG, e.getMessage(), e.getCause());
             }
         }
     }
@@ -176,7 +176,7 @@ public class FileUtil {
                 fileOutputStream = new FileOutputStream(dest);
                 copy(fileInputStream, fileOutputStream);
             } catch (Exception e) {
-                LogUtil.e(TAG, "copyFile 异常", e);
+                LoggerUtil.e(TAG, "copyFile 异常", e);
             }
         }
     }
@@ -201,7 +201,7 @@ public class FileUtil {
                 return true;
             } catch (IOException e) {
                 // #debug
-                LogUtil.e(TAG, e.getMessage(), e.getCause());
+                LoggerUtil.e(TAG, e.getMessage(), e.getCause());
             } finally {
                 CloseUtil.close(inputStream);
                 CloseUtil.close(outputStream);
@@ -246,11 +246,11 @@ public class FileUtil {
                     crashLogs[i].delete();
                 }
             } else {
-                LogUtil.i(TAG, "当前文件夹总数：" + crashLogs.length + ",不够要保留的总数：" + maintainCount + ",不删除");
+                LoggerUtil.i(TAG, "当前文件夹总数：" + crashLogs.length + ",不够要保留的总数：" + maintainCount + ",不删除");
             }
 
         } else {
-            LogUtil.i(TAG, "文件夹不存在：" + folderPath);
+            LoggerUtil.i(TAG, "文件夹不存在：" + folderPath);
         }
     }
 
@@ -299,7 +299,7 @@ public class FileUtil {
             ps.print(content);
             ps.close();
         } catch (Exception e) {
-            LogUtil.e(TAG, "saveString2Inner FileNotFoundException", e);
+            LoggerUtil.e(TAG, "saveString2Inner FileNotFoundException", e);
         }
     }
 
@@ -321,12 +321,12 @@ public class FileUtil {
                     sb.append(new String(buff, 0, hasRead));
                 }
             }else{
-                LogUtil.e(TAG, "文件【" + context.getFileStreamPath(fileName).getAbsolutePath() + "】不存在！！！");
+                LoggerUtil.e(TAG, "文件【" + context.getFileStreamPath(fileName).getAbsolutePath() + "】不存在！！！");
             }
         } catch (FileNotFoundException e) {
-            LogUtil.d(TAG, "readInnerFile FileNotFoundException", e);
+            LoggerUtil.d(TAG, "readInnerFile FileNotFoundException", e);
         } catch (IOException e) {
-            LogUtil.e(TAG, "readInnerFile IOException", e);
+            LoggerUtil.e(TAG, "readInnerFile IOException", e);
         }
         return sb.toString();
     }
@@ -350,12 +350,12 @@ public class FileUtil {
                     sb.append(new String(buff, 0, hasRead));
                 }
             }else{
-                LogUtil.e(TAG, "文件【" + file.getAbsolutePath() + "】不存在！！！");
+                LoggerUtil.e(TAG, "文件【" + file.getAbsolutePath() + "】不存在！！！");
             }
         } catch (FileNotFoundException e) {
-            LogUtil.d(TAG, "readInnerFile FileNotFoundException", e);
+            LoggerUtil.d(TAG, "readInnerFile FileNotFoundException", e);
         } catch (IOException e) {
-            LogUtil.e(TAG, "readInnerFile IOException", e);
+            LoggerUtil.e(TAG, "readInnerFile IOException", e);
         }
         return sb.toString();
     }
@@ -374,7 +374,7 @@ public class FileUtil {
         try {
             result = context.deleteFile(fileName);
         } catch (Exception e) {
-            LogUtil.e(TAG, "deleteInnerFile Exception", e);
+            LoggerUtil.e(TAG, "deleteInnerFile Exception", e);
         }
 
         return result;
@@ -433,17 +433,17 @@ public class FileUtil {
                     File delfile = new File(folderPth + "//" + filelist[i]);
                     if (!delfile.isDirectory()) {
                         delfile.delete();
-                        LogUtil.i(TAG, delfile.getAbsolutePath() + "删除文件成功");
+                        LoggerUtil.i(TAG, delfile.getAbsolutePath() + "删除文件成功");
                     } else if (delfile.isDirectory()) {
                         deleteFiles(folderPth + "//" + filelist[i]);
                     }
                 }
-                LogUtil.i(TAG, file.getAbsolutePath() + "删除成功");
+                LoggerUtil.i(TAG, file.getAbsolutePath() + "删除成功");
                 file.delete();
             }
 
         } catch (Exception e) {
-            LogUtil.e(TAG, "deleteFile() Exception", e);
+            LoggerUtil.e(TAG, "deleteFile() Exception", e);
         }
         return true;
     }
@@ -469,7 +469,7 @@ public class FileUtil {
             writer = new FileWriter(folderPath + "/" + fileName, true);
             writer.write(content);
         } catch (IOException e) {
-            LogUtil.e(TAG, "写文件异常", e);
+            LoggerUtil.e(TAG, "写文件异常", e);
         } finally {
 
             CloseUtil.close(writer);
@@ -489,7 +489,7 @@ public class FileUtil {
         File cacheDir = context.getCacheDir();
         File parentFile = cacheDir.getParentFile();
         if (TextUtils.equals(parentFile.getName(), packageName)) {
-            LogUtil.i(TAG, "缓存目录：" + parentFile);
+            LoggerUtil.i(TAG, "缓存目录：" + parentFile);
             copyFolderFiles(parentFile, romFolderFile);
 
         }
@@ -530,7 +530,7 @@ public class FileUtil {
             }
         }
 
-        LogUtil.i(TAG,"Done "+folderSrc+" 到 "+folderDes+" , 拷贝完成");
+        LoggerUtil.i(TAG,"Done "+folderSrc+" 到 "+folderDes+" , 拷贝完成");
 
     }
 
